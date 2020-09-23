@@ -60,7 +60,7 @@ Options:
   --header                     Print header
   --debug                      Enable diagnostics    
   -h, --help                   Show help
-
+```
 
 ## References
  * Brent Pedersen,  Aaron Quinlan, [hts-nim: scripting high-performance genomic analyses](https://academic.oup.com/bioinformatics/article/34/19/3387/4990493) (Bioinformatics)
