@@ -7,5 +7,5 @@ _Work in progress_
 
 
 ## References
- * Brent S Pedersen,  Aaron R Quinlan, [hts-nim: scripting high-performance genomic analyses](https://academic.oup.com/bioinformatics/article/34/19/3387/4990493) (Bioinformatics)
- * Giovanni Birolo, Andrea Telatin, [covtobed: a simple and fast tool to extract coverage tracks from BAM files](https://joss.theoj.org/papers/10.21105/joss.02119)
+ * Brent Pedersen,  Aaron Quinlan, [hts-nim: scripting high-performance genomic analyses](https://academic.oup.com/bioinformatics/article/34/19/3387/4990493) (Bioinformatics)
+ * Giovanni Birolo, Andrea Telatin, [covtobed: a simple and fast tool to extract coverage tracks from BAM files](https://joss.theoj.org/papers/10.21105/joss.02119) (JOSS)
