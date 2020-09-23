@@ -29,11 +29,26 @@ Example, can be used in a stream from the BAM emitter to covtobed:
 cat input/mini.bam | covtobed | covtotarget input/mini.gff
 ```
 
-Example, can be used on the bed output _produced by covtobed_:
-```bash
-covtotarget input/mini.gff input/mini.cov.bed 
+Where _covtobed_ output is:
+```text
+seq1    0       9       0
+seq1    9       109     5
+seq1    109     189     0
+[...]
+seq1    750     1000    0
+seq2    0       499     0
+seq2    499     599     10
+seq2    599     1000    0
 ```
 
+and `covtocounts` output is:
+```text
+MGLILCEK_00001  701
+MGLILCEK_00010  1000
+MGLILCEK_00003  51
+```
+
+ 
 ### covtocounts
 will count the _number of alignments_ in a BAM file per feature of a target BED or GFF file (basically, adds GFF support to `read-count` found in [nim-hts-tools](https://github.com/brentp/hts-nim-tools))
 ```
