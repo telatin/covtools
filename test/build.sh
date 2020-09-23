@@ -18,7 +18,7 @@ do
 	echo " * Compile (dyn. link)"
 	nim c -o:$DIR/bin/${OUTBIN}_debug $DIR/src/$SOURCE  > $DIR/.compile.log 2>&1 
 
-	echo " * Combile (static)"
+	echo " * Compile (static)"
 	$DIR/bin/hts_nim_static_builder -s src/$SOURCE -n src/${SOURCE}ble > $DIR/.docker.log 2>&1 && \
 	 sudo chown ubuntu $DIR/${OUTBIN} && \
 	 mv $DIR/${OUTBIN} $DIR/release/

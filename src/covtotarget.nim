@@ -8,7 +8,7 @@ import tables
 import algorithm
 
 const
-  version = "0.1.0"
+  version = "0.1.1"
 #[
   **covToTarget**, part of MAGENTA Flow
   based on count-reads in the "hts-nim-tools" suite by Brent Pedersen
@@ -16,7 +16,7 @@ const
   Static binary thanks to  "https://github.com/brentp/hts-nim"
 
  
-   
+  0.1.1   BUG FIX - coverage in contig without genes
   0.1.0   Initial release
 ]#
 
@@ -157,7 +157,7 @@ proc processCoverage(f: File, target: TableRef[string, seq[region_t]]) =
     while f.readLine(line):
       let interval = bed_line_to_region(line)
       chroms.inc(interval.chrom)
-      if chroms[interval.chrom] == 1:
+      if chroms[interval.chrom] == 1 and target.hasKey(interval.chrom):
           lap = lapify(target[interval.chrom])
           res = @[]
       if lap.seek(interval.start, interval.stop, res):
@@ -183,9 +183,9 @@ call fn(x) for each interval x in L that overlaps start..stop this assumes that 
 proc main(argv: var seq[string]): int =
   
   let doc = format("""
-  covToCounts $version
+  covToTarget $version
 
-  Usage: covtocounts [options] <Target> [<covtobed-output>]
+  Usage: covtotarget [options] <Target> [<covtobed-output>]
 
 Arguments:                                                                                                                                                 
 

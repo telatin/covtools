@@ -1,11 +1,11 @@
 # Package
-version       = "0.4.0"
+version       = "0.1.1"
 author        = "Andrea Telatin"
 description   = "covtotarget"
 license       = "MIT"
 
 # Dependencies
-requires "nim >= 0.17.2", "c2nim >= 0.9.10", "docopt", "lapper"
+requires "nim >= 0.17.2", "docopt", "lapper"
 
 srcDir = "src"
 bin = @["covtotarget"]
