@@ -1,0 +1,32 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/../"
+set -euxo pipefail
+
+mkdir -p $DIR/{bin,release}/
+
+SOURCE=covtocounts.nim
+OUTBIN=covtocounts
+nim c -o:$DIR/bin/${OUTBIN}_debug $DIR/src/$SOURCE  > $DIR/.compile.log 2>&1 
+
+echo " * Building test BAM"
+for i in $DIR/input/*.sam
+do
+  samtools view -bS $i | samtools sort -o ${i/sam/bam} -
+  samtools index  ${i/sam/bam}
+done
+
+echo " * Testing"
+for i in $DIR/input/*.bam;
+do
+  if  [ -e "${i/bam/bed}" ]; then
+   $DIR/bin/${OUTBIN}_debug "${i/bam/bed}" "$i"
+  fi
+done
+
+
+
+$DIR/hts_nim_static_builder -x -s src/$SOURCE -d "hts@>=0.2.7" -d "lapper" > $DIR/.docker.log 2>&1 && \
+ sudo chown ubuntu $DIR/${OUTBIN} && \
+ mv $DIR/${OUTBIN} $DIR/release/
+
+sudo chown ubuntu:ubuntu $DIR/bin/*
