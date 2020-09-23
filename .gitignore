@@ -4,3 +4,4 @@ htmldocs/
 .compile.log
 .docker.log
 bin/*
+panel.bam*
