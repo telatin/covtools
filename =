@@ -1,0 +1,7 @@
+@["-s", "/local/giovanni/covtools/src/covtocounts.nim", "--deps", "nim  --deps c2nim", "--deps", "docopt", "--deps", "lapper", "--deps", "hts", "--", "0.17.2 >= 0.9.10", "-d:danger", "-d:release"]
+{"<nim_compiler_args>": ["0.17.2 >= 0.9.10", "-d:danger", "-d:release"], "--nim-src-file": /local/giovanni/covtools/src/covtocounts.nim, "--": true, "--deps": ["nim  --deps c2nim", "docopt", "lapper", "hts"], "--nimble-file": nil}
+    Prompt: nim  --deps c2nim not found in any local packages.json, check internet for updated packages? -> [forced yes]
+Downloading Official package list
+    Success Package list downloaded.
+       Tip: 3 messages have been suppressed, use --verbose to show them.
+     Error: Package not found.

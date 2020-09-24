@@ -8,7 +8,7 @@ import tables
 import algorithm
 
 const
-  version = "0.1.1"
+  version = "0.2.0"
 #[
   **covToTarget**, part of MAGENTA Flow
   based on count-reads in the "hts-nim-tools" suite by Brent Pedersen
@@ -16,6 +16,7 @@ const
   Static binary thanks to  "https://github.com/brentp/hts-nim"
 
  
+  0.2.0   Added normalization
   0.1.1   BUG FIX - coverage in contig without genes
   0.1.0   Initial release
 ]#
@@ -145,10 +146,11 @@ proc gff_to_table(bed: string): TableRef[string, seq[region_t]] =
   return bed_regions
  
  
-proc processCoverage(f: File, target: TableRef[string, seq[region_t]]) =
+proc processCoverage(f: File, target: TableRef[string, seq[region_t]], normalize: bool) =
     var
         line: string
         chroms = initCountTable[string]()
+        featLen   = initTable[string, int]()
         featCount = initCountTable[string]()
         lap: Lapper[region_t] 
         res = new_seq[region_t]() 
@@ -165,9 +167,13 @@ proc processCoverage(f: File, target: TableRef[string, seq[region_t]]) =
         let counts = parseInt(interval.name) * overlapLen(res[0], interval)
         if counts > 0:
           featCount.inc(res[0].name, counts)
+          featLen[res[0].name] = res[0].stop - res[0].start
     
     for feature in featCount.keys:
-      echo feature, "\t", featCount[feature]
+      if normalize:
+        echo feature, "\t", featCount[feature] / featLen[feature]
+      else:
+        echo feature, "\t", featCount[feature]
         
 
       
@@ -197,14 +203,20 @@ Options:
   -g, --gff                    Force GFF for input (otherwise autodetected by .gff extension)
   -t, --type <feat>            GFF feature type to parse [default: CDS]
   -i, --id <ID>                GFF identifier [default: ID]
+  -l, --norm-len               Normalize by gene length
   -h, --help                   Show help
   """ % ["version", version])
 
-  let args = docopt(doc, version=version, argv=argv)
-  var prokkaGff : bool = args["--gff"]
+  let 
+    args = docopt(doc, version=version, argv=argv)
+    norm = args["--norm-len"]
+  var 
+    prokkaGff : bool = args["--gff"]
+
    
   gffIdentifier = $args["--id"]
   gffField      = $args["--type"]
+
  
   if ($args["<Target>"]).contains(".gff"):
     prokkaGff = true
@@ -223,7 +235,7 @@ Options:
   else:
     f = stdin
 
-  processCoverage(f, regions)
+  processCoverage(f, regions, norm)
   #print_alignments_count(bam, uint8(mapq), eflag, regions)
   return 0
 

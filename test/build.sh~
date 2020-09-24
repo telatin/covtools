@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/../"
-set -euo pipefail
+set -euxo pipefail
 
 echo " * Building test BAM"
 for i in $DIR/input/*.sam
@@ -18,15 +18,9 @@ do
 	nim c -o:$DIR/bin/${OUTBIN}_debug $DIR/src/$SOURCE  > $DIR/.compile.log 2>&1 
 
 	echo " * Compile (static)"
-        cp $DIR/src/${SOURCE}ble $DIR/data.nimble
-	$DIR/bin/hts_nim_static_builder -s src/$SOURCE -n $DIR/data.nimble > $DIR/.docker.log 2>&1 && \
+	$DIR/bin/hts_nim_static_builder -s src/$SOURCE -n src/${SOURCE}ble > $DIR/.docker.log 2>&1 && \
 	 sudo chown ubuntu $DIR/${OUTBIN} && \
 	 mv -v $DIR/${OUTBIN} $DIR/release/
-	rm $DIR/data.nimble
-        if [ ! -e $DIR/release/${OUTBIN} ]; then
-           echo "Static build failed."; exit;
-        fi
-
 done
 
 sudo chown ubuntu:ubuntu $DIR/bin/*
