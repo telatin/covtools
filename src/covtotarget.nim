@@ -8,13 +8,14 @@ import tables
 import algorithm
 
 const
-  version = "0.3.1"
+  version = "0.3.2"
 #[
   **covToTarget**, part of MAGENTA Flow
   based on count-reads in the "hts-nim-tools" suite by Brent Pedersen
   see: "https://github.com/brentp/hts-nim-tools"
   Static binary thanks to  "https://github.com/brentp/hts-nim"
 
+  0.3.2   Debug binary
   0.3.1   Checking input files exist
   0.3.0   BUG FIX - uncovered targets were not printed; sorting added; --bed output added
   0.2.0   Added normalization
