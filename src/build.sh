@@ -2,6 +2,9 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/../"
 set -euo pipefail
 
+[ -e "$DIR/src/covtotarget" ] && rm "$DIR/src/covtotarget"
+[ -e "$DIR/src/covtocounts" ] && rm "$DIR/src/covtocounts"
+
 echo " * Building test BAM"
 for i in $DIR/input/*.sam
 do

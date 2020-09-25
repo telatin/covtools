@@ -8,19 +8,19 @@ import tables
 import algorithm
 
 const
-  version = "0.3.0"
+  version = "0.3.1"
 #[
   **covToTarget**, part of MAGENTA Flow
   based on count-reads in the "hts-nim-tools" suite by Brent Pedersen
   see: "https://github.com/brentp/hts-nim-tools"
   Static binary thanks to  "https://github.com/brentp/hts-nim"
 
+  0.3.1   Checking input files exist
   0.3.0   BUG FIX - uncovered targets were not printed; sorting added; --bed output added
   0.2.0   Added normalization
   0.1.1   BUG FIX - coverage in contig without genes
   0.1.0   Initial release
 ]#
-
 
 var
   gffIdentifier = "ID"
@@ -245,7 +245,11 @@ Options:
     prokkaGff = true
 
  
-  var regions = if prokkaGff == true: gff_to_table($args["<Target>"])
+  if not fileExists($args["<Target>"]):
+    stderr.writeLine("FATAL ERROR: Unable to read target regions: ", $args["<Target>"]) 
+    quit(1)
+
+  var targetRegions = if prokkaGff == true: gff_to_table($args["<Target>"])
                  else: bed_to_table($args["<Target>"])
    
   var
@@ -256,12 +260,15 @@ Options:
       f = open($args["<covtobed-output>"])
     except:
       stderr.writeLine("FATAL ERROR: Unable to read input file: ", $args["<covtobed-output>"]) 
+      quit(1)
   else:
+    stderr.writeLine("# Waiting covtobed output from STDIN... [Ctrl-C to quit]")
     f = stdin
 
+  
  
  
-  processCoverage(f, regions, norm, bedOutput)
+  processCoverage(f, targetRegions, norm, bedOutput)
   #print_alignments_count(bam, uint8(mapq), eflag, regions)
   return 0
 
