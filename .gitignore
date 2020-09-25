@@ -5,3 +5,5 @@ htmldocs/
 .docker.log
 bin/*
 panel.bam*
+local
+./=
