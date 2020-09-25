@@ -35,20 +35,24 @@ Where _covtobed_ output is:
 ```text
 seq1    0       9       0
 seq1    9       109     5
-seq1    109     189     0
 [...]
-seq1    750     1000    0
-seq2    0       499     0
 seq2    499     599     10
 seq2    599     1000    0
 ```
 
-and `covtocounts` output is:
+and `covtocounts` output is (extracts):
 ```text
-MGLILCEK_00001  701
-MGLILCEK_00010  1000
+MGLILCEK_00002  0
 MGLILCEK_00003  51
+MGLILCEK_00010  1000
 ```
+with `--norm-len` and `--bed-output`:
+```
+seq0    299     400     ZERO_COV_CHR_2  0.0
+seq1    199     400     MGLILCEK_00001  3.487562189054726
+seq1    599     650     MGLILCEK_00002  0.0
+```
+
 
  
 ## covtocounts
