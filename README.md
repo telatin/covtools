@@ -1,5 +1,7 @@
 # covtools
 
+![coverage track and bed file](docs/coverage.png)
+
 _Work in progress_
 
 
