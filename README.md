@@ -3,11 +3,11 @@
 _Work in progress_
 
 
-### covtotarget
+## covtotarget
 will count the _total nucleotide coverage_ per feature in a BED or GFF file using as input the output of [covtobed](https://github.com/telatin/covtobed) (also from STDIN).
 
 ```
-covToTarget 0.1.0
+covToTarget 0.3.2
 
   Usage: covtotarget [options] <Target> [<covtobed-output>]
 
@@ -21,6 +21,8 @@ Options:
   -g, --gff                    Force GFF for input (otherwise autodetected by .gff extension)
   -t, --type <feat>            GFF feature type to parse [default: CDS]
   -i, --id <ID>                GFF identifier [default: ID]
+  -l, --norm-len               Normalize by gene length
+  -b, --bed-output             Output format is BED-like (default is feature_name [tab] counts)
   -h, --help                   Show help
 ```
 
@@ -49,7 +51,7 @@ MGLILCEK_00003  51
 ```
 
  
-### covtocounts
+## covtocounts
 will count the _number of alignments_ in a BAM file per feature of a target BED or GFF file (basically, adds GFF support to `read-count` found in [nim-hts-tools](https://github.com/brentp/hts-nim-tools))
 ```
 covToCounts 0.4.1
