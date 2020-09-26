@@ -1,5 +1,5 @@
 #!/bin/bash
-DEBUG=" -x "
+DEBUG="  "
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/../"
 set -euo pipefail
 
@@ -23,7 +23,7 @@ do
 
 	echo " * Compile (static)"
         cp $DIR/src/${SOURCE}ble $DIR/data.nimble
-	$DIR/bin/hts_nim_static_builder $DEBUG -s src/$SOURCE -n $DIR/data.nimble > $DIR/.docker.log 2>&1 && \
+	$DIR/bin/hts_nim_static_builder $DEBUG -s src/$SOURCE -n $DIR/data.nimble -- --opt:speed > $DIR/.docker.log 2>&1 && \
 	 sudo chown ubuntu $DIR/${OUTBIN} && \
 	 mv -v $DIR/${OUTBIN} $DIR/release/
 	rm $DIR/data.nimble

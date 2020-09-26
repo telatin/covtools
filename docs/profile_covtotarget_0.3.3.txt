@@ -1,0 +1,399 @@
+total executions of each stack trace:
+Entry: 1/89 Calls: 46/355 = 12.96% [sum: 46; 46/355 = 12.96%]
+  /local/miniconda3/nim/lib/system/iterators_1.nim: readLine 46/355 = 12.96%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 2/89 Calls: 20/355 = 5.63% [sum: 66; 66/355 = 18.59%]
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 3/89 Calls: 20/355 = 5.63% [sum: 86; 86/355 = 24.23%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 4/89 Calls: 19/355 = 5.35% [sum: 105; 105/355 = 29.58%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 5/89 Calls: 17/355 = 4.79% [sum: 122; 122/355 = 34.37%]
+  /local/miniconda3/nim/lib/system/iterators_1.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: strip 25/355 = 7.04%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 6/89 Calls: 12/355 = 3.38% [sum: 134; 134/355 = 37.75%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 7/89 Calls: 9/355 = 2.54% [sum: 143; 143/355 = 40.28%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 8/89 Calls: 9/355 = 2.54% [sum: 152; 152/355 = 42.82%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/alloc.nim: interiorAllocatedPtr 29/355 = 8.17%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 9/89 Calls: 8/355 = 2.25% [sum: 160; 160/355 = 45.07%]
+  /local/miniconda3/nim/lib/system/iterators_1.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 10/89 Calls: 7/355 = 1.97% [sum: 167; 167/355 = 47.04%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: -% 27/355 = 7.61%
+  /local/miniconda3/nim/lib/system/gc.nim: usrToCell 21/355 = 5.92%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 11/89 Calls: 7/355 = 1.97% [sum: 174; 174/355 = 49.01%]
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 12/89 Calls: 7/355 = 1.97% [sum: 181; 181/355 = 50.99%]
+  /local/miniconda3/nim/lib/pure/parseutils.nim: rawParseInt 7/355 = 1.97%
+  /local/miniconda3/nim/lib/pure/parseutils.nim: parseBiggestInt 8/355 = 2.25%
+  /local/miniconda3/nim/lib/pure/parseutils.nim: parseInt 12/355 = 3.38%
+  /local/miniconda3/nim/lib/pure/strutils.nim: parseInt 12/355 = 3.38%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 13/89 Calls: 7/355 = 1.97% [sum: 188; 188/355 = 52.96%]
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 14/89 Calls: 7/355 = 1.97% [sum: 195; 195/355 = 54.93%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 15/89 Calls: 6/355 = 1.69% [sum: 201; 201/355 = 56.62%]
+  /local/miniconda3/nim/lib/system/strmantle.nim: eqStrings 9/355 = 2.54%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: inc 22/355 = 6.20%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 16/89 Calls: 6/355 = 1.69% [sum: 207; 207/355 = 58.31%]
+  /local/miniconda3/nim/lib/pure/hashes.nim: rotl32 11/355 = 3.10%
+  /local/miniconda3/nim/lib/pure/hashes.nim: murmurHash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/hashes.nim: hash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: inc 22/355 = 6.20%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 17/89 Calls: 6/355 = 1.69% [sum: 213; 213/355 = 60.00%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 18/89 Calls: 5/355 = 1.41% [sum: 218; 218/355 = 61.41%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: +% 26/355 = 7.32%
+  /local/miniconda3/nim/lib/system/gc.nim: cellToUsr 15/355 = 4.23%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 19/89 Calls: 5/355 = 1.41% [sum: 223; 223/355 = 62.82%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 20/89 Calls: 5/355 = 1.41% [sum: 228; 228/355 = 64.23%]
+  /local/miniconda3/nim/lib/pure/hashes.nim: rotl32 11/355 = 3.10%
+  /local/miniconda3/nim/lib/pure/hashes.nim: murmurHash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/hashes.nim: hash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: [] 14/355 = 3.94%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 21/89 Calls: 5/355 = 1.41% [sum: 233; 233/355 = 65.63%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/alloc.nim: interiorAllocatedPtr 29/355 = 8.17%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 22/89 Calls: 5/355 = 1.41% [sum: 238; 238/355 = 67.04%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: -% 27/355 = 7.61%
+  /local/miniconda3/nim/lib/system/gc.nim: usrToCell 21/355 = 5.92%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 23/89 Calls: 4/355 = 1.13% [sum: 242; 242/355 = 68.17%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: decRef 17/355 = 4.79%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 24/89 Calls: 4/355 = 1.13% [sum: 246; 246/355 = 69.30%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: +% 26/355 = 7.32%
+  /local/miniconda3/nim/lib/system/gc.nim: cellToUsr 15/355 = 4.23%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 25/89 Calls: 4/355 = 1.13% [sum: 250; 250/355 = 70.42%]
+  /local/miniconda3/nim/lib/pure/hashes.nim: murmurHash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/hashes.nim: hash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: [] 14/355 = 3.94%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 26/89 Calls: 4/355 = 1.13% [sum: 254; 254/355 = 71.55%]
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 27/89 Calls: 3/355 = 0.85% [sum: 257; 257/355 = 72.39%]
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: gff_line_to_region 6/355 = 1.69%
+  /local/giovanni/covtools/src/covtotarget.nim: gff_to_table 9/355 = 2.54%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 28/89 Calls: 3/355 = 0.85% [sum: 260; 260/355 = 73.24%]
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 29/89 Calls: 3/355 = 0.85% [sum: 263; 263/355 = 74.08%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/alloc.nim: interiorAllocatedPtr 29/355 = 8.17%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 30/89 Calls: 3/355 = 0.85% [sum: 266; 266/355 = 74.93%]
+  /local/miniconda3/nim/lib/system/strmantle.nim: eqStrings 9/355 = 2.54%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: [] 14/355 = 3.94%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 31/89 Calls: 3/355 = 0.85% [sum: 269; 269/355 = 75.77%]
+  /local/miniconda3/nim/lib/pure/collections/hashcommon.nim: nextTry 4/355 = 1.13%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: inc 22/355 = 6.20%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 32/89 Calls: 3/355 = 0.85% [sum: 272; 272/355 = 76.62%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: +% 26/355 = 7.32%
+  /local/miniconda3/nim/lib/system/gc.nim: cellToUsr 15/355 = 4.23%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 33/89 Calls: 3/355 = 0.85% [sum: 275; 275/355 = 77.46%]
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: inc 22/355 = 6.20%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 34/89 Calls: 3/355 = 0.85% [sum: 278; 278/355 = 78.31%]
+  /local/miniconda3/nim/lib/pure/hashes.nim: murmurHash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/hashes.nim: hash 18/355 = 5.07%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: rawGet 35/355 = 9.86%
+  /local/miniconda3/nim/lib/pure/collections/tables.nim: inc 22/355 = 6.20%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 35/89 Calls: 3/355 = 0.85% [sum: 281; 281/355 = 79.15%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/gc_common.nim: isOnStack 3/355 = 0.85%
+  /local/miniconda3/nim/lib/system/gc.nim: unsureAsgnRef 3/355 = 0.85%
+  /home/ubuntu/.nimble/pkgs/lapper-0.1.6/lapper.nim: seek 13/355 = 3.66%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 36/89 Calls: 3/355 = 0.85% [sum: 284; 284/355 = 80.00%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: decRef 17/355 = 4.79%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 37/89 Calls: 3/355 = 0.85% [sum: 287; 287/355 = 80.85%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: decRef 17/355 = 4.79%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 38/89 Calls: 3/355 = 0.85% [sum: 290; 290/355 = 81.69%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/alloc.nim: interiorAllocatedPtr 29/355 = 8.17%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 39/89 Calls: 3/355 = 0.85% [sum: 293; 293/355 = 82.54%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: -% 27/355 = 7.61%
+  /local/miniconda3/nim/lib/system/gc.nim: usrToCell 21/355 = 5.92%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 40/89 Calls: 3/355 = 0.85% [sum: 296; 296/355 = 83.38%]
+  /home/ubuntu/.nimble/pkgs/lapper-0.1.6/lapper.nim: seek 13/355 = 3.66%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 41/89 Calls: 3/355 = 0.85% [sum: 299; 299/355 = 84.23%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <=% 83/355 = 23.38%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: strip 25/355 = 7.04%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 42/89 Calls: 2/355 = 0.56% [sum: 301; 301/355 = 84.79%]
+  /local/miniconda3/nim/lib/pure/parseutils.nim: parseInt 12/355 = 3.38%
+  /local/miniconda3/nim/lib/pure/strutils.nim: parseInt 12/355 = 3.38%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 43/89 Calls: 2/355 = 0.56% [sum: 303; 303/355 = 85.35%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: +% 26/355 = 7.32%
+  /local/miniconda3/nim/lib/system/alloc.nim: rawAlloc 4/355 = 1.13%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 44/89 Calls: 2/355 = 0.56% [sum: 305; 305/355 = 85.92%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: +% 26/355 = 7.32%
+  /local/miniconda3/nim/lib/system/gc.nim: cellToUsr 15/355 = 4.23%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 45/89 Calls: 2/355 = 0.56% [sum: 307; 307/355 = 86.48%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/alloc.nim: interiorAllocatedPtr 29/355 = 8.17%
+  /local/miniconda3/nim/lib/system/gc.nim: newObjRC1 78/355 = 21.97%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 46/89 Calls: 2/355 = 0.56% [sum: 309; 309/355 = 87.04%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: -% 27/355 = 7.61%
+  /local/miniconda3/nim/lib/system/gc.nim: decRef 17/355 = 4.79%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system/gc.nim: newSeq 51/355 = 14.37%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 47/89 Calls: 2/355 = 0.56% [sum: 311; 311/355 = 87.61%]
+  /local/miniconda3/nim/lib/system/arithmetics.nim: -% 27/355 = 7.61%
+  /local/miniconda3/nim/lib/system/gc.nim: usrToCell 21/355 = 5.92%
+  /local/miniconda3/nim/lib/system/gc.nim: asgnRef 2/355 = 0.56%
+  /home/ubuntu/.nimble/pkgs/lapper-0.1.6/lapper.nim: seek 13/355 = 3.66%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 48/89 Calls: 2/355 = 0.56% [sum: 313; 313/355 = 88.17%]
+  /local/miniconda3/nim/lib/system/comparisons.nim: <% 45/355 = 12.68%
+  /local/miniconda3/nim/lib/system/gc.nim: decRef 17/355 = 4.79%
+  /local/miniconda3/nim/lib/system/gc.nim: newObj 119/355 = 33.52%
+  /local/miniconda3/nim/lib/system.nim: substr 79/355 = 22.25%
+  /local/miniconda3/nim/lib/pure/strutils.nim: split 173/355 = 48.73%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%
+Entry: 49/89 Calls: 2/355 = 0.56% [sum: 315; 315/355 = 88.73%]
+  /local/miniconda3/nim/lib/pure/strutils.nim: parseInt 12/355 = 3.38%
+  /local/giovanni/covtools/src/covtotarget.nim: bed_line_to_region 244/355 = 68.73%
+  /local/giovanni/covtools/src/covtotarget.nim: processCoverage 343/355 = 96.62%
+  /local/giovanni/covtools/src/covtotarget.nim: main 354/355 = 99.72%
+  /local/giovanni/covtools/src/covtotarget.nim: covtotarget 355/355 = 100.00%

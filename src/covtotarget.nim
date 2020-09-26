@@ -7,14 +7,17 @@ import strutils
 import tables
 import algorithm
 
+
 const
-  version = "0.3.2"
+  version = "CovToTarget 0.3.3"
 #[
   **covToTarget**, part of MAGENTA Flow
+
   based on count-reads in the "hts-nim-tools" suite by Brent Pedersen
   see: "https://github.com/brentp/hts-nim-tools"
   Static binary thanks to  "https://github.com/brentp/hts-nim"
 
+  0.3.3   Minor improvements
   0.3.2   Debug binary
   0.3.1   Checking input files exist
   0.3.0   BUG FIX - uncovered targets were not printed; sorting added; --bed output added
@@ -167,7 +170,7 @@ proc processCoverage(f: File, target: TableRef[string, seq[region_t]], normalize
       chroms.inc(interval.chrom)
       if chroms[interval.chrom] == 1 and target.hasKey(interval.chrom):
           lap = lapify(target[interval.chrom])
-          res = @[]
+          res.setLen(0)
  
       try:
         if lap.seek(interval.start, interval.stop, res):
