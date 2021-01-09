@@ -7,3 +7,4 @@ bin/*
 panel.bam*
 local
 ./=
+test/issue1/

@@ -1,5 +1,5 @@
 #!/bin/bash
-DEBUG="  "
+DEBUG=" -x "
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/../"
 set -euo pipefail
 

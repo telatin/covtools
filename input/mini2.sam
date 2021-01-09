@@ -26,3 +26,4 @@ s2for2	0	seq2	500	60	100M	*	0	0	*	*
 s2for3	0	seq2	500	60	100M	*	0	0	*	*
 s2for4	0	seq2	500	60	100M	*	0	0	*	*
 s4for_	0	seq2	500	60	100M	*	0	0	*	*
+fakeend	0	seq0	1	60	100M	*	0	0	*	*

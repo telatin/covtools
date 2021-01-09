@@ -1,0 +1,5 @@
+@SQ	SN:seq1	LN:1000
+@SQ	SN:seq2	LN:1000
+@SQ	SN:seq0	LN:1000
+read11	16	seq1	100	60	100M	*	0	0	*	*
+s2rev1	0	seq2	500	60	100M	*	0	0	*	*
