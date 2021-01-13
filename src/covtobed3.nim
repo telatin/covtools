@@ -7,7 +7,9 @@ import tables
 import algorithm
  
 const
-  version = "0.0.1"
+  version = "2.0.3-alpha"
+
+
 #[
   
 ]# 
@@ -26,23 +28,22 @@ type
     cov:     int
     forward: int
     reverse: int
-
-  
+ 
+    
 var
   debug = false
   physical_coverage = false
   output_strand = false
   last_interval : interval
+  outputQueue = newSeq[interval]()
 
 
-template initClosure(id,iter:untyped) =
-  let id = iterator():auto{.closure.} =
-    for x in iter:
-      let strand = if x.flag.reverse: '+' 
-      else: '-'
-      if debug == true:
-        stderr.writeLine( " +------> ", x.qname, "\t", x.chrom , ":", x.start, ":", x.stop, " ", strand)
-      yield x
+template initClosure(closureName, thisIterator:untyped, minq: uint8, eflag: uint16) =
+  let closureName = iterator():auto{.closure.} =
+    for thisElement in thisIterator:
+      if thisElement.mapping_quality < mapq: continue
+      if (thisElement.flag and eflag) != 0: continue
+      yield thisElement
 
 proc doAssert(condition: bool, message: string) =
   if condition == false:
@@ -91,20 +92,27 @@ type
     stop: int
     reverse: bool
 
-
-
-#TODO: fix this hack to make it returning the maximum item
 proc `<`(a, b: covEnd): bool = a.stop < b.stop
 
-#proc `>`(a, b: covEnd): bool = a.stop < b.stop
-proc writeCoverage(chrName: string, last_pos, next_change: int, c: coverage) =
-  if debug == true:
-    stderr.writeLine( "[", chrName, "]\t", last_pos, "\t", next_change, "\t", c.tot(), "x\t", c.forward, ',', c.reverse )
+proc `$`(i: interval): string =
+  i.chr & ":" & $i.start & "-" & $i.stop & " (" & $i.forward & "+" & $i.reverse & "=" & $i.cov & ")X"
 
+proc printBed(q: seq[interval]) =
+  if len(q) > 0:
+    echo q[0].chr, "\t", q[0].start, "\t", q[^1].stop, "\t", q[0].cov
+    outputQueue.setLen(0)
+
+proc addIntervalToQueue(chrName: string, last_pos, next_change: int, c: coverage) =
+  let
+    i = interval(chr: chrName, start: last_pos, stop: next_change, cov: c.tot(), forward: c.forward, reverse: c.reverse)
+ 
+  if len(outputQueue) > 0 and (i.chr != outputQueue[^1].chr or i.cov != outputQueue[^1].cov):
+    printBed(outputQueue)
+  
   if last_pos < next_change:
-    let current = interval(chr: chrName, start: last_pos, stop: next_change, cov: c.tot(), forward: c.forward, reverse: c.reverse)
-    echo chrName, "\t", last_pos, "\t", next_change, "\t", c.tot()
-  discard
+    outputQueue.add(i)
+  
+  #echo chrName, "\t", last_pos, "\t", next_change, "\t", c.tot()
 
 
 proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) = 
@@ -112,16 +120,19 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
     next_change   = 0
     chrSize       = initTable[string, int]()
     aln           : Record
-    stop = false
-    more_alignments : bool
+    referenceEnd  : bool
+    more_alignments         : bool
     more_alignments_for_ref : bool
 
-  initClosure(nextAlignment,bam.items())
+  initClosure(nextAlignment,bam.items(), mapq, eflag)
 
   aln = nextAlignment()
+
   for reference in bam.hdr.targets():
+    referenceEnd = false
     if debug == true:
-      stderr.writeLine("===", reference.name, '\t', reference.length)
+      stderr.writeLine("# ", reference.name, '\t', reference.length, "\t(newReference)")
+
     chrSize[reference.name] = int(reference.length)
     
     var 
@@ -131,8 +142,9 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
 
     while true:
       
-      more_alignments = not aln.isNil
+      more_alignments         = not aln.isNil
       more_alignments_for_ref = more_alignments and aln.chrom == reference.name
+      
       # calculate next change
       if more_alignments_for_ref:
         if coverage_ends.empty():
@@ -145,17 +157,19 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
         else:
           next_change = coverage_ends.topStop()
          
-
       # output coverage ...
       doAssert(coverage_ends.len() == cov.tot(), "coverage not equal to queue size")
-      
+      addIntervalToQueue(reference.name, last_pos, next_change, cov)
+
+      if next_change == int(reference.length):
+        break  
+
       if debug == true:
         stderr.writeLine("-+-  next=", next_change, "\tMoreAln=", more_alignments, "|", more_alignments_for_ref,";Cov=", cov.tot(), ";Size=", len(coverage_ends))
         if more_alignments:
           stderr.writeLine( " +-> more aln @ chr=", aln.chrom, ",pos=", aln.start)
 
-      writeCoverage(reference.name, last_pos, next_change, cov)
-      
+
       
       # increment coverage with aln starting here
       while more_alignments_for_ref and (next_change == aln.start):
@@ -181,27 +195,29 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
         cov.dec(coverage_ends.topReverse())
         discard coverage_ends.pop()
       
-      last_pos = next_change
-
-      # End chromosome loop
-
-      if last_pos == int(reference.length) or not more_alignments_for_ref:
-        if debug:
-          stderr.writeLine("<", reference.name ,"> lastpos=", last_pos, " == ref=", int(reference.length), "\tmorealign=", more_alignments)
-        doAssert(cov.tot()==0, "coverage not null at the end of chromosome " & reference.name & ": " & $cov.tot() & " = " & $cov.forward & "+" & $cov.reverse )
-        doAssert(coverage_ends.len() == 0, "coverage queue not null at the end of chromosome "  & reference.name & ": " & $coverage_ends.len())
-        stop = true
-
-
-      if stop == true:
-        break
       
 
-    
+      # End chromosome loop
+      if referenceEnd == true:
+        doAssert(cov.tot()==0, "coverage not null at the end of chromosome " & reference.name & ": cov.tot=" & $cov.tot() & " = For:" & $cov.forward & "+Rev:" & $cov.reverse )
+        doAssert(coverage_ends.len() == 0, "coverage queue not null at the end of chromosome "  & reference.name & ": " & $coverage_ends.len())
+        break
+
+      
+
+      if last_pos == int(reference.length):
+        referenceEnd = true
+
+      last_pos = next_change
+      
+    # end while ----
     if not coverage_ends.len() == 0:
       stderr.writeLine("Coverage not zero when expected. Try samtools fixmate.")
       raise
   
+  # Flush?
+  printBed(outputQueue)
+
   #if more_alignments:
   #  stderr.writeLine("Is the BAM sorted?")
   #ß  raise
@@ -224,17 +240,11 @@ Options:
   -p, --physical               Calculate physical coverage
   -s, --stranded               Report coverage separate by strand
   -Q, --mapq <mapq>            Mapping quality threshold [default: 0]
-  -g, --gff                    Force GFF for input (otherwise autodetected by .gff extension)
-  -t, --type <feat>            GFF feature type to parse [default: CDS]
-  -i, --id <ID>                GFF identifier [default: ID]
-  -n, --rpkm                   Add a RPKM column
-  -l, --norm-len               Add a counts/length column (after RPKM when both used)
-  --header                     Print header
   --debug                      Enable diagnostics    
   -h, --help                   Show help
   """ % ["version", version])
 
-  let args = docopt(doc, version=version, argv=argv)
+  let args = docopt(doc, version="covtobed " & $version, argv=argv)
   let mapq = parse_int($args["--mapq"])
 
   debug = args["--debug"]
@@ -246,6 +256,7 @@ Options:
     
 
   if $args["<BAM>"] != "nil":
+    # Read from FILE
     try:
       if not fileExists($args["<BAM>"]):
         stderr.writeLine("FATAL ERROR: File <", $args["<BAM>"], "> not found")
@@ -255,6 +266,7 @@ Options:
       stderr.writeLine("FATAL ERROR: Unable to read input file: ", $args["<BAM>"]) 
       quit(1)
   else:
+    # Read STDIN
     open(bam, "-", threads=threads)
 
   try:
