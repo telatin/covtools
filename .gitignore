@@ -8,3 +8,6 @@ panel.bam*
 local
 ./=
 test/issue1/
+input/*.bam
+input/*.bai
+NA

@@ -6,13 +6,20 @@ import strutils
 import tables
 import algorithm
  
-const
-  version = "2.0.3-alpha"
 
+const
+  version = "2.0.4-alpha"
 
 #[
   
 ]# 
+
+type EKeyboardInterrupt = object of CatchableError
+ 
+proc handler() {.noconv.} =
+  raise newException(EKeyboardInterrupt, "Keyboard Interrupt")
+ 
+setControlCHook(handler)
 
 type
   coverage = ref object
@@ -34,7 +41,6 @@ var
   debug = false
   physical_coverage = false
   output_strand = false
-  last_interval : interval
   outputQueue = newSeq[interval]()
 
 
@@ -94,12 +100,17 @@ type
 
 proc `<`(a, b: covEnd): bool = a.stop < b.stop
 
+#[ 
 proc `$`(i: interval): string =
   i.chr & ":" & $i.start & "-" & $i.stop & " (" & $i.forward & "+" & $i.reverse & "=" & $i.cov & ")X"
+]#
 
 proc printBed(q: seq[interval]) =
   if len(q) > 0:
-    echo q[0].chr, "\t", q[0].start, "\t", q[^1].stop, "\t", q[0].cov
+    if output_strand == true:
+      echo q[0].chr, "\t", q[0].start, "\t", q[^1].stop, "\t", q[0].forward, "\t", q[0].reverse
+    else:
+      echo q[0].chr, "\t", q[0].start, "\t", q[^1].stop, "\t", q[0].cov
     outputQueue.setLen(0)
 
 proc addIntervalToQueue(chrName: string, last_pos, next_change: int, c: coverage) =
@@ -161,8 +172,8 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
       doAssert(coverage_ends.len() == cov.tot(), "coverage not equal to queue size")
       addIntervalToQueue(reference.name, last_pos, next_change, cov)
 
-      if next_change == int(reference.length):
-        break  
+      #if next_change == int(reference.length):
+      #  break  
 
       if debug == true:
         stderr.writeLine("-+-  next=", next_change, "\tMoreAln=", more_alignments, "|", more_alignments_for_ref,";Cov=", cov.tot(), ";Size=", len(coverage_ends))
@@ -173,8 +184,12 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
       
       # increment coverage with aln starting here
       while more_alignments_for_ref and (next_change == aln.start):
-        if "physical_coverage" == "not":
-          doAssert(false, "coding fiddling doo")
+        if physical_coverage == true:
+          if aln.isize > 0:
+            coverage_ends.push(covEnd(stop: int(aln.start + aln.isize), reverse: aln.flag.reverse) )
+            cov.inc(aln.flag.reverse)
+
+          #doAssert(false, "coding fiddling doo")
           #[						
             if (alignment.InsertSize > 0) {
 						        debug cerr << "   [phy] pos:" << alignment.Position << " size:" << alignment.InsertSize << endl;
@@ -198,15 +213,18 @@ proc covtobed(bam:Bam, mapq:uint8, eflag:uint16) =
       
 
       # End chromosome loop
-      if referenceEnd == true:
+#[       if referenceEnd == true:
         doAssert(cov.tot()==0, "coverage not null at the end of chromosome " & reference.name & ": cov.tot=" & $cov.tot() & " = For:" & $cov.forward & "+Rev:" & $cov.reverse )
         doAssert(coverage_ends.len() == 0, "coverage queue not null at the end of chromosome "  & reference.name & ": " & $coverage_ends.len())
-        break
+        break ]#
 
       
 
       if last_pos == int(reference.length):
-        referenceEnd = true
+#        referenceEnd = true
+        doAssert(cov.tot()==0, "coverage not null at the end of chromosome " & reference.name & ": cov.tot=" & $cov.tot() & " = For:" & $cov.forward & "+Rev:" & $cov.reverse )
+        doAssert(coverage_ends.len() == 0, "coverage queue not null at the end of chromosome "  & reference.name & ": " & $coverage_ends.len())
+        break
 
       last_pos = next_change
       
@@ -227,19 +245,21 @@ proc main(argv: var seq[string]): int =
   let doc = format("""
   covToBed $version
 
-  Usage: covtobed [options] [<BAM>]
+  Usage: covtobed [options] [<BAM>...]
 
 Arguments:                                                                                                                                                 
+  <BAM>          the alignment file for which to calculate depth (default: STDIN)
 
-  <BAM>          the alignment file for which to calculate depth
-
-Options:
-
-  -T, --threads <threads>      BAM decompression threads [default: 0]
-  -F, --flag <FLAG>            Exclude reads with any of the bits in FLAG set [default: 1796]
+Output management:
   -p, --physical               Calculate physical coverage
   -s, --stranded               Report coverage separate by strand
+
+BAM reading options:
+  -T, --threads <threads>      BAM decompression threads [default: 0]
+  -F, --flag <FLAG>            Exclude reads with any of the bits in FLAG set [default: 1796]
   -Q, --mapq <mapq>            Mapping quality threshold [default: 0]
+
+Other options:
   --debug                      Enable diagnostics    
   -h, --help                   Show help
   """ % ["version", version])
@@ -248,6 +268,8 @@ Options:
   let mapq = parse_int($args["--mapq"])
 
   debug = args["--debug"]
+  physical_coverage = args["--physical"]
+  output_strand     = args["--stranded"]
 
   var
     eflag = uint16(parse_int($args["--flag"]))
@@ -267,6 +289,7 @@ Options:
       quit(1)
   else:
     # Read STDIN
+    stderr.writeLine("Reading from STDIN [Ctrl-C to break]")
     open(bam, "-", threads=threads)
 
   try:
@@ -279,4 +302,10 @@ Options:
 
 when isMainModule:
   var args = commandLineParams()
-  discard main(args)
+  try:
+    discard main(args)
+  except EKeyboardInterrupt:
+    stderr.writeLine( "Quitting.")
+  except:
+    stderr.writeLine( getCurrentExceptionMsg() )
+    quit(1)   

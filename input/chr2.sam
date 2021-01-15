@@ -1,6 +1,6 @@
 @SQ	SN:seq1	LN:1000
 @SQ	SN:seq2	LN:1000
-s2rev1	16	seq2	500	60	100M	*	0	0	*	*
+@SQ	SN:seq3	LN:1000
 s2rev2	16	seq2	500	60	100M	*	0	0	*	
 s2rev3	16	seq2	500	60	100M	*	0	0	*	*
 s2rev4	16	seq2	500	60	100M	*	0	0	*	*
@@ -19,4 +19,5 @@ s2for1	0	seq2	600	60	100M	*	0	0	*	*
 s2for2	0	seq2	600	60	100M	*	0	0	*	*
 s2for3	0	seq2	600	60	100M	*	0	0	*	*
 s2for4	0	seq2	600	60	100M	*	0	0	*	*
-s4for_	0	seq2	600	60	100M	*	0	0	*	*
+s4for_	0	seq2	900	60	100M	*	0	0	*	*
+s2rev1	16	seq3	500	60	100M	*	0	0	*	*

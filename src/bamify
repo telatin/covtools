@@ -1,0 +1,9 @@
+#!/bin/bash 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+for SAM in $DIR/../input/*sam;
+do
+  echo -n "   * $(basename $SAM):"
+  samtools view -bS $SAM | samtools sort -o ${SAM/.sam/.bam} - 
+  samtools index ${SAM/.sam/.bam} && echo " OK " || echo "ERROR"
+done

@@ -1,0 +1,22 @@
+@SQ	SN:for	LN:1000
+@SQ	SN:rev	LN:1000
+@SQ	SN:both	LN:1000
+read-rev2	16	rev	500	60	100M	*	0	0	*	
+read-rev3	16	rev	500	60	100M	*	0	0	*	*
+read-rev4	16	rev	500	60	100M	*	0	0	*	*
+read-rev4	16	rev	500	60	100M	*	0	0	*	*
+read-for1	0	for	500	60	100M	*	0	0	*	*
+read-for2	0	for	500	60	100M	*	0	0	*	*
+read-for3	0	for	500	60	100M	*	0	0	*	*
+read-for4	0	for	500	60	100M	*	0	0	*	*
+read-for6	0	for	500	60	100M	*	0	0	*	*
+read-rev1	16	both	600	60	100M	*	0	0	*	*
+read-rev2	16	both	600	60	100M	*	0	0	*	
+read-rev3	16	both	600	60	100M	*	0	0	*	*
+read-rev4	16	both	600	60	100M	*	0	0	*	*
+read-rev4	16	both	600	60	100M	*	0	0	*	*
+read-for1	0	both	600	60	100M	*	0	0	*	*
+read-for2	0	both	600	60	100M	*	0	0	*	*
+read-for3	0	both	600	60	100M	*	0	0	*	*
+read-for4	0	both	600	60	100M	*	0	0	*	*
+read-for6	0	both	900	60	100M	*	0	0	*	*

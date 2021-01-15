@@ -30,6 +30,12 @@ const
 ]#
 
 
+type EKeyboardInterrupt = object of CatchableError
+ 
+proc handler() {.noconv.} =
+  raise newException(EKeyboardInterrupt, "Keyboard Interrupt")
+ 
+setControlCHook(handler)
 var
   do_norm = false
   debug = false
@@ -289,6 +295,13 @@ Options:
   print_alignments_count(bam, uint8(mapq), eflag, regions)
   return 0
 
+ 
 when isMainModule:
   var args = commandLineParams()
-  discard main(args)
+  try:
+    discard main(args)
+  except EKeyboardInterrupt:
+    stderr.writeLine( "Quitting.")
+  except:
+    stderr.writeLine( getCurrentExceptionMsg() )
+    quit(1)   

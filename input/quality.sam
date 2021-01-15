@@ -1,0 +1,9 @@
+@SQ	SN:hiqual	LN:1000
+@SQ	SN:loqual	LN:1000
+@SQ	SN:nullqual	LN:1000
+read1	0	hiqual	500	60	100M	*	0	0	*	
+read2	16	hiqual	500	60	100M	*	0	0	*	*
+read3	0	loqual	500	10	100M	*	0	0	*	
+read4	16	loqual	500	10	100M	*	0	0	*	*
+read5	0	nullqual	500	0	100M	*	0	0	*	
+read6	16	nullqual	500	0	100M	*	0	0	*	*
