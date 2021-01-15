@@ -8,6 +8,10 @@ import algorithm
 
 const
   version = "0.4.1"
+
+var
+  tableCounts = initTable[string, seq[int]]()
+  tableValues = initTable[string, seq[float]]()
 #[
   **covToCounts**, part of MAGENTA Flow
   based on count-reads in the "hts-nim-tools" suite by Brent Pedersen
@@ -36,6 +40,8 @@ proc handler() {.noconv.} =
   raise newException(EKeyboardInterrupt, "Keyboard Interrupt")
  
 setControlCHook(handler)
+
+
 var
   do_norm = false
   debug = false
@@ -45,9 +51,6 @@ var
   gffField      = "CDS"
   alignmentsPerMillion : float = 0
 
-
-
-
 type
   region_t = ref object
     chrom: string
@@ -55,6 +58,9 @@ type
     stop: int
     name: string
     count: int
+
+type
+  referenceCounts = tuple[refName: string, order: int, length: int, counts: int, value: float]
 
 proc inc_count(r:region_t) = inc(r.count)
 proc start(r: region_t): int {.inline.} = return r.start
@@ -184,7 +190,34 @@ proc gff_to_table(bed: string): TableRef[string, seq[region_t]] =
 proc get_alignments_per_million(bam:Bam): float =
   for i in bam.hdr.targets:
     result += float(stats(bam.idx,i.tid).mapped)
+    
+    tableCounts[i.name] = @[]
+    tableValues[i.name] = @[]
+    
   result /= 1000000
+
+proc count_alignments_per_ref(bam:Bam, mapq:uint8, eflag:uint16, factor: float): seq[referenceCounts] =
+  for chromosome in bam.hdr.targets:
+    var 
+      chromCounts : referenceCounts
+      rawCounts = 0
+    chromCounts.refName = chromosome.name
+    chromCounts.order   = chromosome.tid
+    chromCounts.length   = int(chromosome.length)
+
+    for aln in bam.query(chromosome.name):
+      if aln.mapping_quality < mapq: continue
+      if (aln.flag and eflag) != 0: continue
+      rawCounts += 1
+    chromCounts.counts = rawCounts
+    chromCounts.value  = float(rawCounts) / factor
+ 
+    if chromosome.name in tableCounts:
+      tableCounts[chromosome.name].add( rawCounts )
+      tableValues[chromosome.name].add( float(rawCounts) / factor )
+    result.add(chromCounts)
+
+
 
 proc print_alignments_count(bam:Bam, mapq:uint8, eflag:uint16, regions:TableRef[string, seq[region_t]]) =
   for chrom in regions.keys():
@@ -216,11 +249,10 @@ proc main(argv: var seq[string]): int =
   let doc = format("""
   covToCounts $version
 
-  Usage: covtocounts [options] <Target> <BAM-or-CRAM>...
+  Usage: covtocounts [options]  <BAM-or-CRAM>...
 
 Arguments:                                                                                                                                                 
-
-  <Target>       the BED (or GFF) file containing regions in which to count reads
+ 
   <BAM-or-CRAM>  the alignment file for which to calculate depth
 
 Options:
@@ -257,42 +289,38 @@ Options:
     threads = parse_int($args["--threads"])
     bam:Bam
 
-  try:
-    open(bam, $args["<BAM-or-CRAM>"], threads=threads, index=true, fai=fasta)
-    if debug:
-      stderr.writeLine("Opening BAM/CRAM file: ", $args["<BAM-or-CRAM>"])
-  except:
-    stderr.writeLine("Unable to open BAM file: ", $args["<BAM-or-CRAM>"] )
+  var
+    samples = @["#ViralSeq"]
 
-  if do_rpkm:
-    alignmentsPerMillion = bam.get_alignments_per_million()
-    if debug:
-      stderr.writeLine("Total: ", 1000000 * bam.get_alignments_per_million())
+  for bamFile in @(args["<BAM-or-CRAM>"]):
+    var sampleName = extractFilename(bamFile)
+    samples.add(sampleName)
+    try:
+      open(bam, bamFile, threads=threads, index=true, fai=fasta)
+      if debug:
+        stderr.writeLine("Opening BAM/CRAM file: ", bamFile)
+    except:
+      stderr.writeLine("Unable to open BAM file: ", bamFile )
+         
 
-  if bam.idx == nil:
-    stderr.write_line("ERROR: requires BAM/CRAM index")
-    quit(1)
+    if bam.idx == nil:
+      stderr.write_line("ERROR: requires BAM/CRAM index")
+      quit(1)
 
-  if args["--header"]:
-    if do_rpkm and do_norm:
-      echo "#Chrom\tstart\tend\tcounts\tRPKM\tCounts/Length"
-    elif do_rpkm:
-      echo "#Chrom\tstart\tend\tcounts\tRPKM"
-    elif do_norm:
-      echo "#Chrom\tstart\tend\tcounts\tCounts/Length"
-    else:
-      echo "#Chrom\tstart\tend\tcounts"
 
-  if ($args["<Target>"]).endsWith("gff"):
-    prokkaGff = true
+    if alignmentsPerMillion <= 0:
+      alignmentsPerMillion = bam.get_alignments_per_million()
 
-  var regions = if prokkaGff == true: gff_to_table($args["<Target>"])
-                 else: bed_to_table($args["<Target>"])
+    let sampleCounts = count_alignments_per_ref(bam, uint8(mapq), eflag, alignmentsPerMillion)
+    
   
-  if debug:
-    stderr.writeLine("Target loaded: ", len(regions), " reference sequences")
+  echo samples.join("\t")
+  for reference in tableCounts.keys:
+    if do_rpkm:
+      echo reference, "\t", tableValues[reference].join("\t")
+    else:
+      echo reference, "\t", tableCounts[reference].join("\t")
 
-  print_alignments_count(bam, uint8(mapq), eflag, regions)
   return 0
 
  
