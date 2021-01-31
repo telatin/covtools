@@ -6,6 +6,7 @@ import strutils
 import tables
 import algorithm
  
+import ./covutils
 
 const
   version = "2.0.4-alpha"
@@ -245,14 +246,20 @@ proc main(argv: var seq[string]): int =
   let doc = format("""
   covToBed $version
 
-  Usage: covtobed [options] [<BAM>...]
+  Usage: covtobed [options] [<BAM>]
 
 Arguments:                                                                                                                                                 
   <BAM>          the alignment file for which to calculate depth (default: STDIN)
 
-Output management:
+Core options:
   -p, --physical               Calculate physical coverage
   -s, --stranded               Report coverage separate by strand
+  -w, --wig <SPAN>             Output in wig format (using fixed <SPAN>)
+
+Target files:
+  -r, --regions <bed>          Target file in BED or GFF format (detected with the extension)
+  -t, --type <feat>            GFF feature type to parse [default: CDS]
+  -i, --id <ID>                GFF identifier [default: ID]
 
 BAM reading options:
   -T, --threads <threads>      BAM decompression threads [default: 0]
@@ -270,12 +277,20 @@ Other options:
   debug = args["--debug"]
   physical_coverage = args["--physical"]
   output_strand     = args["--stranded"]
+  target_file       = $args["--target"]
+
+  
 
   var
     eflag = uint16(parse_int($args["--flag"]))
     threads = parse_int($args["--threads"])
     bam:Bam
-    
+    format_gff : bool
+
+
+  var
+    regions = if format_gff == true: gff_to_table($args["--regions"])
+                 else: bed_to_table($args["--regions"])
 
   if $args["<BAM>"] != "nil":
     # Read from FILE

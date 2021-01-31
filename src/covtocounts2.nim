@@ -266,6 +266,7 @@ Options:
   -i, --id <ID>                GFF identifier [default: ID]
   -n, --rpkm                   Add a RPKM column
   -l, --norm-len               Add a counts/length column (after RPKM when both used)
+  --multiqc                    Print output as MultiQC table
   --header                     Print header
   --debug                      Enable diagnostics    
   -h, --help                   Show help
@@ -290,11 +291,11 @@ Options:
     bam:Bam
 
   var
-    samples = @["#ViralSeq"]
+    samples = @["ViralSequence"]
 
   for bamFile in @(args["<BAM-or-CRAM>"]):
     var sampleName = extractFilename(bamFile)
-    samples.add(sampleName)
+    samples.add(sampleName.split('.')[0])
     try:
       open(bam, bamFile, threads=threads, index=true, fai=fasta)
       if debug:
@@ -314,6 +315,11 @@ Options:
     let sampleCounts = count_alignments_per_ref(bam, uint8(mapq), eflag, alignmentsPerMillion)
     
   
+  if args["--multiqc"]:
+    echo "# plot_type: 'table'"
+    echo "# section_name: 'CovTools count'"
+    echo "# description: 'Feature table: counts of mapped reads against predicted viral sequences'"
+
   echo samples.join("\t")
   for reference in tableCounts.keys:
     if do_rpkm:
