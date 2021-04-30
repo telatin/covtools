@@ -1,4 +1,4 @@
-# covtools (**[moved](https://github.com/telatin/bamtocov)**.)
+# covtools (**[moved](https://github.com/telatin/bamtocov)**)
 
 The package is now maintained as **[bamtocov](https://github.com/telatin/bamtocov)**.
 
