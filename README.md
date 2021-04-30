@@ -1,6 +1,4 @@
-# covtools (archived)
-
-![coverage track and bed file](docs/coverage.png)
+# covtools (**[moved](https://github.com/telatin/bamtocov)**.)
 
 The package is now maintained as **[bamtocov](https://github.com/telatin/bamtocov)**.
 
